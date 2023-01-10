@@ -1,6 +1,6 @@
 buildscript {
     ext { // ext란 build.gradle의 전역변수를 사용한다는 뜻
-        springBootVersion = '2.1.7.RELEASE'
+        springBootVersion = '2.1.9.RELEASE'
     }
     repositories{
         mavenCentral()
@@ -11,10 +11,6 @@ buildscript {
     }
 }
 
-plugins {
-    id 'java'
-}
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -22,6 +18,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -29,10 +26,27 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    //스프링프레임워크 관련
     implementation('org.springframework.boot:spring-boot-starter-web')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine")
+
+    //롬복
+    implementation('org.projectlombok:lombok')
+
+    //테스트 관련
+    testImplementation ('org.springframework.boot:spring-boot-starter-test')
+    testImplementation("org.springframework.security:spring-security-test")
+
+    //Spring Data Jpa
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('com.h2database:h2')
+
+    //머스테치
+    implementation('org.springframework.boot:spring-boot-starter-mustache')
+
+    //소셜기능 구현시 클라이언트 입장에서 필요
+    //org.springframework.boot:spring-boot-starter-oauth2-jose를 기본으로 관리해줌
+    implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
 }
 
 test {

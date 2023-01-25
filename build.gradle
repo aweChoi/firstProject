@@ -47,6 +47,12 @@ dependencies {
     //소셜기능 구현시 클라이언트 입장에서 필요
     //org.springframework.boot:spring-boot-starter-oauth2-jose를 기본으로 관리해줌
     implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
+
+    //spring-session-jdbc 등록
+    implementation('org.springframework.session:spring-session-jdbc')
+
+    //테스트도구 사용
+    testImplementation("org.springframework.security:spring-security-test")
 }
 
 test {

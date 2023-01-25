@@ -1,6 +1,7 @@
 package org.example.web;
 
 import lombok.RequiredArgsConstructor;
+import org.example.config.auth.LoginUser;
 import org.example.config.auth.dto.SessionUser;
 import org.example.service.posts.PostsService;
 import org.example.web.dto.PostsResponseDto;
@@ -15,12 +16,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
     private final PostsService postsService;
-    private final HttpSession httpSession;
+//    private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){ // 어노테이션으로 가져오게 수정
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");//CustomOAuth2UserService에서 로그인 성공 시 세션에 SessionUser를 저장
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user");//CustomOAuth2UserService에서 로그인 성공 시 세션에 SessionUser를 저장
         if (user != null){
             model.addAttribute("userName", user.getName());
         }

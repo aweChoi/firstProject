@@ -53,6 +53,9 @@ dependencies {
 
     //테스트도구 사용
     testImplementation("org.springframework.security:spring-security-test")
+
+    //MariaDB드라이버 사용
+    implementation("org.mariadb.jdbc:mariadb-java-client")
 }
 
 test {
